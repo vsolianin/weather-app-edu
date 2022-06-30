@@ -1,0 +1,24 @@
+
+const request = require('request');
+
+const geocode = (address, callback) => {
+
+    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=pk.eyJ1IjoidnNvbGlhbmluIiwiYSI6ImNsM3R0bXB1eDA2YWszbHFwZXgxdHBpbDEifQ.BiYNGB8Uf-yt2s26jMd-kA&limit=1';
+  
+    request({ url, json: true }, (error, { body } = {}) => {
+      if (error) {
+        console.log(error, 'error');
+        callback('Unable to connect to location services', undefined)
+      } else if (body.features.length === 0) {
+        callback('Unable to find location. Try to another search', undefined);
+      } else {
+        callback(null, {
+          latitude: body.features[0].center[1],
+          longitude: body.features[0].center[0],
+          location: body.features[0].place_name
+        });
+      }
+    })
+  };
+
+  module.exports = geocode;
