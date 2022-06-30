@@ -1,7 +1,5 @@
 window.onload = function() {
 
-  console.log('Client side javascript file was loaded!');
-
   const weatherForm = document.querySelector('form');
   const search = document.querySelector('input');
 
