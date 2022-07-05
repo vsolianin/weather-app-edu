@@ -5,6 +5,7 @@ const forecast = require('./utils/forecast.js');
 
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define paths for Express config
 const publicDirectory = path.join(__dirname, '../public');
@@ -28,6 +29,7 @@ app.get('', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
+	console.log(__dirname, 'dirname');
 	res.render('about', {
 		title: 'About', 
 		name: 'Katy Solianina',
@@ -77,13 +79,6 @@ app.get('/help', (req, res) => {
 			});
 		});
 	}
-
-	// res.send({
-	// 	address: req.query.address,		
-	// 	location: 'Philadelphia',
-	// 	forecast: 'It is raining cats and dogs'
-	// });
-
  });
 
  app.get('/products', (req, res) => {
@@ -115,6 +110,6 @@ app.get('/help', (req, res) => {
 	});
  });
 
-app.listen(3000, () => {
-	console.log('Server start listening on port 3000');
+app.listen(port, () => {
+	console.log(`Server start listening on port ${port}`);
 });

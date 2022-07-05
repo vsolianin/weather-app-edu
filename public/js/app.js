@@ -11,7 +11,7 @@ window.onload = function() {
     const location = search.value;
     message.textContent = 'Loading...';
 
-    fetch(`http://localhost:3000/weather?address=${location}`)
+    fetch(`/weather?address=${location}`)
       .then(response => response.json())
       .then(data => {
 
